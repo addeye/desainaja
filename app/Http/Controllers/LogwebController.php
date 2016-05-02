@@ -12,8 +12,7 @@ class LogwebController extends Controller
 {
     public function login()
     {
-
-        return view('login');
+        return view('admin.login');
     }
 
     public function ceklogin(Request $request)
@@ -22,8 +21,7 @@ class LogwebController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            // Authentication passed...
-            return redirect()->intended('user');
+            return redirect()->intended('adminweb/');
         }
         else
         {

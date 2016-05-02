@@ -22,11 +22,20 @@ Route::get('/logout','LogwebController@logout');
 Route::resource('user','UserController');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('user/', function ()    {
-        return view('home');
+    Route::get('adminweb/', function ()    {
+        return view('admin.home');
     });
 
     Route::get('user/profile', function () {
         // Uses Auth Middleware
     });
 });
+
+Route::get('produk',function(){
+    return view('produk');
+});
+Route::get('keranjang');
+Route::get('desain',function(){
+    return view('desain');
+});
+Route::get('kontak');
