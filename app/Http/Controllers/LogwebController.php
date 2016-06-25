@@ -17,15 +17,18 @@ class LogwebController extends Controller
 
     public function ceklogin(Request $request)
     {
+        // set the remember me cookie if the user check the box
+        $remember = ($request->has('remember')) ? true : false;
+
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password],$remember)) {
             return redirect()->intended('adminweb/');
         }
         else
         {
-            return redirect('/');
+            return redirect('login')->with('alert-failed', 'Password dan username salah.');
         }
 
     }
@@ -34,5 +37,10 @@ class LogwebController extends Controller
     {
         Auth::logout();
         return redirect('login');
+    }
+
+    public function forgotpassword()
+    {
+
     }
 }

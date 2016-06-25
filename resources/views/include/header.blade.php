@@ -2,7 +2,7 @@
 <div class="header-main">
     <div class="header-left">
         <div class="logo-name">
-            <a href="index.html"> <h1>Shoppy</h1>
+            <a href="{{URL('/adminweb')}}"> <h1>Shoppy</h1>
                 <!--<img id="logo" src="" alt="Logo"/>-->
             </a>
         </div>
@@ -158,8 +158,8 @@
                         <div class="profile_img">
                             <span class="prfil-img"><img src="{{ asset('shoppy/images/p1.png') }}" alt=""> </span>
                             <div class="user-name">
-                                <p>Malorum</p>
-                                <span>Administrator</span>
+                                <p>{{Idintity::name()}}</p>
+                                <span>{{Idintity::level()}}</span>
                             </div>
                             <i class="fa fa-angle-down lnr"></i>
                             <i class="fa fa-angle-up lnr"></i>

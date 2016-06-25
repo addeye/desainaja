@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\MLevel;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $rowPage = [
+          'data' => User::all(),
+        ];
+//        return $rowPage;
+        return view('admin.user_management.list',$rowPage);
     }
 
     /**
@@ -25,7 +31,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $rowPage = [
+            'level' => MLevel::all(),
+        ];
+        return view('admin.user_management.insert',$rowPage);
     }
 
     /**
@@ -36,7 +45,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        return $request->id_level;
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->id_level = $request->id_level;
+        $user->save();
+
+        return redirect('user');
     }
 
     /**
@@ -47,7 +64,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $rowPage = [
+            'data' => User::find($id),
+            'level'=> MLevel::all(),
+        ];
+//        return $rowPage;
+        return view('admin.user_management.update',$rowPage);
     }
 
     /**
@@ -70,7 +92,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password != '')
+        {
+            $user->password = bcrypt($request->password);
+        }
+        $user->id_level = $request->id_level;
+        $user->save();
+
+        return redirect('user');
     }
 
     /**
@@ -81,6 +113,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
     }
 }

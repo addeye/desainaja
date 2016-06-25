@@ -4,6 +4,10 @@
     @include('include_light.slider')
 @endsection
 
+@section('promo')
+    @include('include_light.promo')
+@endsection
+
 @section('content')
     <div class="items">
         <div class="container">

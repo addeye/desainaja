@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','name', 'email', 'password','id_level'
     ];
 
     /**
@@ -23,4 +23,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $appends = [
+        'level'
+    ];
+
+    public function getLevelAttribute()
+    {
+        return MLevel::find($this->id_level);
+    }
+
+//    public function level()
+//    {
+//        return $this->hasMany('App\MLevel','id','id_level');
+//    }
 }

@@ -19,13 +19,16 @@ Route::get('/login','LogwebController@login');
 Route::post('/login','LogwebController@ceklogin');
 Route::get('/logout','LogwebController@logout');
 
-Route::resource('user','UserController');
+Route::resource('order','OrderController');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('adminweb/', function ()    {
+
+    Route::get('adminweb/', function()
+    {
         return view('admin.home');
     });
 
+    Route::resource('user','UserController');
     Route::get('user/profile', function () {
         // Uses Auth Middleware
     });
@@ -34,8 +37,18 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('produk',function(){
     return view('produk');
 });
-Route::get('keranjang');
+Route::get('keranjang', function(){
+    return view('keranjang');
+});
 Route::get('desain',function(){
     return view('desain');
 });
 Route::get('kontak');
+
+Route::get('cart', function(){
+    Cart::add('1', 'Kaos1', 1, 9.99, array('size' => 'large'));
+    Cart::add('2', 'Kaos2', 1, 9.99, array('size' => 'large'));
+//    Cart::destroy();
+    $result = Cart::content();
+     return $result;
+});

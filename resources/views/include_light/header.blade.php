@@ -1,7 +1,7 @@
 <div class="header-top">
     <div class="header-bottom">
         <div class="logo">
-            <h1><a href="index.html">Lighting</a></h1>
+            <h1><a href="index.html">DesainAja</a></h1>
         </div>
         <!---->
         <div class="top-nav">
@@ -44,7 +44,7 @@
         </div>
         <!---->
         <div class="cart box_1">
-            <a href="checkout.html">
+            <a href="{{ URL('/keranjang') }}">
                 <div class="total">
                     <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div>
                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>

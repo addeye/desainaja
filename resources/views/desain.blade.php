@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <div class="product">
+    <div class="row">
         <div class="container">
             <div class="product-price1">
                     <div class="col-md-12">
@@ -249,9 +249,9 @@
                             <div class="layer">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <a id="downloadFront" class="btn btn-primary btn-xs">
-                                            Download Gambar
-                                        </a>
+                                        {{--<a id="downloadFront" class="btn btn-primary btn-xs">--}}
+                                            {{--Download Gambar--}}
+                                        {{--</a>--}}
                                         <button type="button" class="close close_img" data-dismiss="modal">
                                             <span aria-hidden="true">&times;</span><span class="sr-only close_img">Close</span>
                                         </button>
@@ -261,14 +261,15 @@
                                         <div id="image_reply"></div>
                                         <div class="modal-footer">
                                             <div class="row">
-                                                <form method="POST" enctype="multipart/form-data" id="imageFileForm" action="checkout/checkout.php">
+                                                <form method="POST" enctype="multipart/form-data" id="imageFileForm" action="{{URL('/order')}}">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <div class="col-md-1">
                                                         <button type="button" class="btn btn-default close_img" data-dismiss="modal">
                                                             Close
                                                         </button>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        Price :545/-
+                                                        Price : -
                                                     </div>
 
                                                     <div class="col-md-6">
@@ -285,7 +286,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <input id="small2" onchange="changeval2()"  name="small" type="number" value="1" class="form-control small input-md" min=0 max=99999 />
+                                                                        <input id="small2" onchange="changeval2()"  name="small" type="number" value="0" class="form-control small input-md" min=0 max=99999 />
                                                                     </td>
 
                                                                     <td>
@@ -316,7 +317,7 @@
                                                         <input type="hidden" name="img_front" id="img_front" value="" />
                                                         <input type="hidden" name="img_back" id="img_back" value="" />
                                                         <button type="submit" class="btn btn-primary">
-                                                            Buy Now!
+                                                            Pesan Sekarang !
                                                         </button>
                                                     </div>
                                                 </form>
@@ -362,7 +363,7 @@
                         </div>
                     </div>
                     <div class="clearfix"> </div>
-
+                <br>
             </div>
         </div>
     </div>
@@ -437,19 +438,18 @@
             readURL(this);
         });
 
-
-        $('#downloadFront').click(function(){
-            html2canvas($('#image_reply'),
-                    {
-                        onrendered: function (canvas) {
-                            var a = document.createElement('a');
-                            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-                            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-                            a.download = 'somefilenameFront.jpg';
-                            a.click();
-                        }
-                    });
-        });
+//        $('#downloadFront').click(function(){
+//            html2canvas($('#image_reply'),
+//                    {
+//                        onrendered: function (canvas) {
+//                            var a = document.createElement('a');
+//                            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+//                            a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+//                            a.download = 'somefilenameFront.jpg';
+//                            a.click();
+//                        }
+//                    });
+//        });
 
     </script>
 @endsection

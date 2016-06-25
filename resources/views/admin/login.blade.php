@@ -32,6 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1>Login</h1>
         </div>
         <div class="login-block">
+            @include('include.alert')
             <form method="post" action="{{URL('/login')}}">
                 {{ csrf_field() }}
                 <input type="text" name="email" placeholder="Email" required="">
@@ -40,13 +41,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="forgot-grid">
                         <ul>
                             <li>
-                                <input type="checkbox" id="brand1" value="">
+                                <input type="checkbox" id="brand1" name="remember">
                                 <label for="brand1"><span></span>Remember me</label>
                             </li>
                         </ul>
                     </div>
                     <div class="forgot">
-                        <a href="#">Forgot password?</a>
+                        <a href="javascript:void(0);" id="forgot">Forgot password?</a>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -65,6 +66,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+{{--<!-- Button trigger modal -->--}}
+{{--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">--}}
+    {{--Launch demo modal--}}
+{{--</button>--}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Send your email</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Send Email</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--inner block end here-->
 <!--copy rights start here-->
 <div class="copyrights">
@@ -78,6 +102,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//scrolling js-->
 <script src="{{ asset('shoppy/js/bootstrap.js') }}"> </script>
 <!-- mother grid end here-->
+<script>
+    $('document').ready(function(){
+        $('#forgot').click(function(){
+            $('#myModal').modal().show;
+        });
+    });
+</script>
 </body>
 </html>
 

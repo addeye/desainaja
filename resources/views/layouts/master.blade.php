@@ -103,6 +103,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//skycons-icons-->
 </head>
 <body>
+<div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Loading ....
+            </div>
+        </div>
+    </div>
+</div>
 <div class="page-container">
     <div class="left-content">
         <div class="mother-grid-inner">
@@ -161,5 +170,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//scrolling js-->
 <script src="{{ asset('shoppy/js/bootstrap.js') }}"> </script>
 <!-- mother grid end here-->
+@yield('script')
 </body>
 </html>
